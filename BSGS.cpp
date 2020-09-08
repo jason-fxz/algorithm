@@ -4,6 +4,7 @@ typedef long long ll;
 int gcd(ll a,ll b) {return !b?a:gcd(b,a%b);}
 //a^x=n (mod p)
 ll BSGS(ll a,ll n,ll p) {
+	if(a%p==0&&n!=0) return p;
     ll ans=p,t=ceil(sqrt(p)),dt=1;
     map<ll,ll> hash;
     for(ll B=1;B<=t;B++) dt=(dt*a)%p,hash[(dt*n)%p]=B;
