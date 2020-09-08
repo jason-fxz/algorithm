@@ -1,41 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-ll fpow(ll a,ll b,ll p) {
-	ll r=1ll;
-	while(b) {
-		if(b&1) r=(r*a)%p;
-		a=(a*a)%p;b>>=1;
-	}
-	return r;
+int gcd(ll a,ll b) {return !b?a:gcd(b,a%b);}
+//a^x=n (mod p)
+ll BSGS(ll a,ll n,ll p) {
+    ll ans=p,t=ceil(sqrt(p)),dt=1;
+    map<ll,ll> hash;
+    for(ll B=1;B<=t;B++) dt=(dt*a)%p,hash[(dt*n)%p]=B;
+    for(ll A=1,num=dt;A<=t;A++,num=(num*dt)%p) if(hash.find(num)!=hash.end()) ans=min(ans,A*t-hash[num]); 
+    return ans;
 }
-ll gcd(ll a,ll b){
-	return !b?a:gcd(b,a%b);
-}
-// calc  a^x=b (mod p)
-ll BSGS(ll a,ll b,ll p) {
-	if(gcd(a,p)!=1) return -2; //can't solve
-	else {
-		map<ll,ll> hah;
-		b%=p;a%=p;
-		ll k=ceil(sqrt(p));
-		for(ll i=1;i<=k;i++) {
-			hah[fpow(a,i,p)*b%p]=i;
-		}
-		ll tp=fpow(a,k,p),now=1ll;
-		for(ll t=1;t<=k;t++) {
-			now=(now*tp)%p;
-			if(hah[now]) {
-				return t*k-hah[now];
-			}
-		}
-	}
-	return -1;
-}
+ll a,p,n;
 int main() {
-	ll p,b,n;
-	cin>>p>>b>>n;
-	ll ans=BSGS(b,n,p);
-	if(ans==-1) printf("no solution\n");
-	else printf("%lld\n",ans);
+    cin>>p>>a>>n;
+    ll ans=BSGS(a,n,p);
+    if(ans==p) printf("no solution\n");
+    else printf("%lld\n",ans);
 }
