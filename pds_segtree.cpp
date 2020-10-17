@@ -1,5 +1,6 @@
-#include <cstdio>
-
+#include <bits/stdc++.h>
+#define re register
+using namespace std;
 namespace fast_io {
     #define MAX_INPORT (1<<23)   // 一次读入量
     #define MAX_OUTPORT (1<<23)  // 一次输出量
@@ -39,12 +40,49 @@ namespace fast_io {
 using fast_io::red;
 using fast_io::prt;
 using fast_io::puc;
+#define ls(p) tr[p].lc
+#define rs(p) tr[p].rc
+const int N = 200010;
 
-const int N = 10000000;
-long long a[N];
+struct node {
+    int cnt,lc,rc;
+}tr[N*18];int root[N],tot;
+int a[N],b[N],tt,n,q;
+int newnode() { tr[++tot]={0,0,0};return tot;}
+void pushup(int p) {tr[p].cnt=tr[ls(p)].cnt+tr[rs(p)].cnt;}
+void modify(int p,int q,int val,int l=1,int r=tt) {
+    if(l==r) return (p==0)?tr[q].cnt=1:tr[q].cnt=tr[p].cnt+1,void();
+    int mid=(l+r)>>1;
+    if(val<=mid) {
+        modify(ls(p),ls(q)=newnode(),val,l,mid);
+        rs(q)=rs(p);
+    }else {
+        modify(rs(p),rs(q)=newnode(),val,mid+1,r);
+        ls(q)=ls(p);
+    }
+    pushup(q);
+}
+int query(int p,int q,int k,int l=1,int r=tt) {
+    if(l==r) return b[l];
+    int mid=(l+r)>>1,t=tr[ls(q)].cnt-tr[ls(p)].cnt;
+    return (k<=t)?query(ls(p),ls(q),k,l,mid):query(rs(p),rs(q),k-t,mid+1,r);
+}
 int main() {
-    for(int i=0;i<N;i++) red(a[i]);
-    for(int i=0;i<N;i++) prt(a[i]),puc('\n');
+    red(n);red(q);
+    for(re int i=1;i<=n;++i) red(a[i]),b[i]=a[i];
+    sort(b+1,b+n+1);
+    tt=unique(b+1,b+n+1)-b-1;
+    for(re int i=1;i<=n;++i) a[i]=lower_bound(b+1,b+tt+1,a[i])-b;
+    root[0]=newnode();
+    for(re int i=1;i<=n;++i) {
+        root[i]=newnode();
+        modify(root[i-1],root[i],a[i]);
+    }
+    for(re int i=1;i<=q;++i) {
+        re int l,r,k;red(l);red(r);red(k);
+        prt(query(root[l-1],root[r],k));puc('\n');
+    }
     fast_io::close();
     return 0;
+
 }
