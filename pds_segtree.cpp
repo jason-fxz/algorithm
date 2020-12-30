@@ -1,49 +1,18 @@
-#include <bits/stdc++.h>
-#define re register
-using namespace std;
-namespace fast_io {
-    #define MAX_INPORT (1<<23)   // 一次读入量
-    #define MAX_OUTPORT (1<<23)  // 一次输出量
-    char buf[MAX_INPORT],*p1=buf,*p2=buf,obuf[MAX_OUTPORT],*O=obuf,*end=obuf+MAX_OUTPORT;
-    inline char gc() {
-        #ifdef DEBUG
-            return getchar();
-        #endif
-        if(p1!=p2) return *p1++;
-        p1=buf;
-        p2=p1+fread(buf,1,MAX_INPORT,stdin);
-        return p1==p2?EOF:*p1++;
-    }
-    template<typename T>    // 读入任意类型整数
-    inline void red(T &x) {
-        x=0;bool fg=0;char ch=gc();
-        while(ch<'0'||ch>'9') {if(ch=='-') fg^=1;ch=gc();}
-        while(ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(T)(ch^48),ch=gc();
-        if(fg) x=-x;
-    }
-    inline void puc(char ch) {      // 输出字符
-        #ifdef DEBUG
-            return putchar(ch),void();
-        #endif
-        if(O!=end) *O++=ch;
-        else {fwrite(obuf,O-obuf,1,stdout);O=obuf;*O++=ch;}
-    }
-    template<typename T>   
-    void _prt(T x) {
-        if(x>(T)9) _prt(x/(T)10);
-        puc((char)(x%10+(T)'0'));
-    }
-    template<typename T>     // 读出任意类型整数
-    void prt(T x) {if(x<0) puc('-'),x=-x;_prt(x);}
-    void close() {fwrite(obuf,O-obuf,1,stdout);} // 输出
-}
-using fast_io::red;
-using fast_io::prt;
-using fast_io::puc;
+// 主席树，区间第 k 大
+#include <cstdio>
+#include <algorithm>
 #define ls(p) tr[p].lc
 #define rs(p) tr[p].rc
+#define re register
+template <typename T>
+inline void red(T &x) {
+    x=0;bool f=0;char ch=getchar();
+    while(ch<'0'||ch>'9') {if(ch=='-') f^=1; ch=getchar();}
+    while(ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(T)(ch^48),ch=getchar();
+    if(f) x=-x;
+}
+using namespace std;
 const int N = 200010;
-
 struct node {
     int cnt,lc,rc;
 }tr[N*18];int root[N],tot;
@@ -80,9 +49,8 @@ int main() {
     }
     for(re int i=1;i<=q;++i) {
         re int l,r,k;red(l);red(r);red(k);
-        prt(query(root[l-1],root[r],k));puc('\n');
+        printf("%d\n",query(root[l-1],root[r],k));
     }
-    fast_io::close();
     return 0;
 
 }

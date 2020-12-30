@@ -28,9 +28,11 @@ int read()
     return a*32768+b;
 }
 // ----------- END ReadIN -------------
+
 typedef unsigned long long ull;
-const int N = 20000010;
 int n,m,s;
+// ------------ BEGIN RMQ -------------
+const int N = 20000010;
 int a[N];
 namespace RMQ {
 	inline int gmax(int x,int y) {return a[x]>a[y]?x:y;}
@@ -66,6 +68,7 @@ namespace RMQ {
         return gmax(gmax(F[k][L],F[k][R-(1<<k)+1]),gmax(suf[l],pre[r]));
     }
 }
+// -------------- END RMQ --------------
 inline void swap(int &l,int &r) {l^=r;r^=l;l^=r;}
 int main() {
 	scanf("%d%d%d",&n,&m,&s);

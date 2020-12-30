@@ -1,126 +1,61 @@
+// fhq - treap 简易模板
 #include <bits/stdc++.h>
-#define irand (rand()*32768+rand())
+#define ls(p) t[p].l
+#define rs(p) t[p].r
+#define mid ((l+r)>>1)
 using namespace std;
-/*
-    非旋Treap (fhq treap)模板
-    2020-06-19
-    by fxz
+const int N = 100010;
+mt19937 rd(random_device{}()); // random maker
+struct node {
+    int l,r,siz,rnd,val,tag; /* other data/tags */
+}t[N]; int tot,root;
+/* ---------- for recycle nodes ------------
+int cyc[N],cyccnt;
+inline void delnode(int p) {cyc[++cyccnt]=p;}
+inline void newnode(int val) {
+    int id=(cyccnt>0)?cyc[cyccnt--]:++tot;
+    t[id]={0,0,1,(int)(rd()),val}; return id;
+}
 */
-struct Treap_plus{
-    private:
-    static const int N=100010;
-    const int inf=0x7fffffff;
-    struct node {
-        int key,rnd;
-        int siz,l,r;
-    }d[N];
-    int rt=0,tot;
-    void updata(int t) {
-        d[t].siz=d[d[t].l].siz+d[d[t].r].siz+1;
+inline int newnode(int val) { t[++tot]={0,0,1,(int)(rd()),val}; return tot;} // create a new node
+inline void updata(int p) {t[p].siz=t[ls(p)].siz+t[rs(p)].siz+1; /* pushup other datas */ }
+inline void pushtag(int p,int vl) { /* tag to push */ }
+inline void pushdown(int p) {
+    if(t[p].tag!=std_tag) {
+        if(ls(p)) pushtag(ls(p),t[p].tag);
+        if(rs(p)) pushtag(rs(p),t[p].tag);
+        t[p].tag=std_tag;
     }
-    pair<int,int> split(int t,int p) {
-        pair<int,int> res(0,0); 
-        if(t==0) return res;
-        if(p<=d[d[t].l].siz) {
-            res=split(d[t].l,p);
-            d[t].l=res.second;
-            updata(t);
-            res.second=t;
-        }
-        else {
-            res=split(d[t].r,p-1-d[d[t].l].siz);
-            d[t].r=res.first;
-            updata(t);
-            res.first=t;
-        }
-        return res;
+}
+int merge(int p,int q) { 
+    if(!p||!q) return p+q;
+    if(t[p].rnd<t[q].rnd) {
+        pushdown(p);
+        rs(p)=merge(rs(p),q);
+        updata(p); return p;
+    }else {
+        pushdown(q);
+        ls(q)=merge(p,ls(q));
+        updata(q); return q;
     }
-    int merge(int a,int b) {
-        if(a==0) return b;
-        if(b==0) return a;
-        if(d[a].rnd<d[b].rnd) {
-            d[a].r=merge(d[a].r,b);
-            updata(a);
-            return a;
-        }
-        d[b].l=merge(a,d[b].l);
-        updata(b);
-        return b;
+}
+void split(int p,int k,int &x,int &y) { 
+    if(!p) x=0,y=0;
+    else {
+        pushdown(p);
+        if(t[ls(p)].siz>=k) y=p,split(ls(p),k,x,ls(p));
+        else x=p,split(rs(p),k-t[ls(p)].siz-1,rs(p),y);
+        updata(p);
     }
-    int x_rank(int t,int key) {
-        if(t==0) return 1;
-        if(key<=d[t].key) return x_rank(d[t].l,key);
-        return d[d[t].l].siz+1+x_rank(d[t].r,key);
-    }
-    int getkey(int t,int rk) {
-        if(rk<=d[d[t].l].siz) return getkey(d[t].l,rk);
-        if(rk==d[d[t].l].siz+1) return d[t].key;
-        return getkey(d[t].r,rk-d[d[t].l].siz-1);
-    }
-    int pre(int t,int key,int res=0) {
-        if(t==0) return res;
-        if(d[t].key<key) return pre(d[t].r,key,t);
-        return pre(d[t].l,key,res);
-    }
-    int nxt(int t,int key,int res=0) {
-        if(t==0) return res;
-        if(d[t].key>key) return nxt(d[t].l,key,t);
-        return nxt(d[t].r,key,res);
-    }
-    public:
-    void build() {
-        srand(233);
-        d[rt].rnd=inf;
-    }
-    void insert(int key) {
-        int k=x_rank(rt,key);
-        pair<int,int> a=split(rt,k-1);
-        d[++tot]={key,irand,1,0,0};
-        rt=merge(merge(a.first,tot),a.second);
-    }
-    void remove(int key) {
-        int k=x_rank(rt,key);
-        pair<int,int> a=split(rt,k-1),b=split(a.second,1);
-        rt=merge(a.first,b.second);
-    }
-    int getrank(int key) {
-        return x_rank(rt,key);
-    }
-    void print(int t) {
-        if(t==0) return ;
-        print(d[t].l);
-        printf("%d ",d[t].key);
-        print(d[t].r);
-    }
-    int getpre(int key) {
-        return d[pre(rt,key)].key;
-    }
-    int getnxt(int key) {
-        return d[nxt(rt,key)].key;
-    }
-    int getkey(int rk) {
-        return getkey(rt,rk);
-    }
-    int getroot() {
-        return rt;
-    }
-}tp;
-
-
-int n,op,x;
+}
+int build(int l,int r) { // build tree on a[l..r], return the root 
+    if(l>r) return 0;
+    return merge(build(l,mid-1),merge(newnode(a[mid]),build(mid+1,r)));
+}
+/*
+    other functions base on split() and merge()
+    
+*/
 int main() {
-    tp.build();
-    scanf("%d",&n);
-    while(n--) {
-        scanf("%d%d",&op,&x);
-        switch(op) {
-            case 1:tp.insert(x);break;
-            case 2:tp.remove(x);break;
-            case 3:printf("%d\n",tp.getrank(x));break;
-            case 4:printf("%d\n",tp.getkey(x));break;
-            case 5:printf("%d\n",tp.getpre(x));break;
-            case 6:printf("%d\n",tp.getnxt(x));break;		
-        }
-    }
-    return 0;
+
 }

@@ -39,23 +39,21 @@ namespace LCT {
 		}
 		PushUp(x);
 	}
-	inline int Access(int x) { // 辅助树上打通 x 到根的路径(即 x 到根变为实链)，并返回当前 Splay 的根(同时也是辅助树的根)
-		int p;
-		for(p=0;x;p=x,x=f[x]) {
+	inline void Access(int x) { // 辅助树上打通 x 到根的路径(即 x 到根变为实链)
+		for(int p=0;x;p=x,x=f[x]) {
 			Splay(x); ch[x][1]=p; PushUp(x);
 		}
-		return p;
 	}
 	inline void MakeRoot(int x) { // 钦定 x 为辅助树根
-		int y=Access(x); PushRev(y); Splay(x); 
+		Access(x); Splay(x); PushRev(x); 
 	}
 	inline int FindRoot(int x) { // 找 x 所在辅助树根
 		Access(x); Splay(x);
 		while(ch[x][0]) PushDown(x), x=ch[x][0];
-		Splay(x);
+		Splay(x); // 不加复杂度会假
 		return x;
 	}
-	inline void Split(int x,int y) { // 把 x 到 y 的路径提出来
+	inline void Split(int x,int y) { // 把 x 到 y 的路径提出来, 并以 y 为 Splay 根
 		MakeRoot(x); Access(y); Splay(y);
 	}
 	inline bool Link(int x,int y) { // 连接 x,y 两点
@@ -72,6 +70,22 @@ namespace LCT {
 		}
 		return false;
 	}
+	// 如果保证合法
+	/*
+	inline void Link(int x,int y) {
+		MakeRoot(x); MakeRoot(y); f[x]=y;
+	}
+	inline void Cut(int x,int y) { 
+		MakeRoot(x); Access(y); Splay(y); ch[y][0]=f[x]=0;
+	}
+	*/
+	/*
+	void Print(int x) {
+		if(ch[x][0]) Print(ch[x][0]);
+		printf("%d,",x);
+		if(ch[x][1]) Print(ch[x][1]);
+	}
+	*/
 }
 using namespace LCT;
 int n,m;

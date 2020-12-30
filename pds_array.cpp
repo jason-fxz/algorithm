@@ -1,45 +1,16 @@
+// 可持久化数组
 #include <cstdio>
 #define ls(p) tr[p].lc
 #define rs(p) tr[p].rc
 #define re register
-using namespace std;
-namespace fast_io {
-    #define MAX_INPORT (1<<21)   // 一次读入量
-    #define MAX_OUTPORT (1<<21)  // 一次输出量
-    char buf[MAX_INPORT],*p1=buf,*p2=buf,obuf[MAX_OUTPORT],*O=obuf,*end=obuf+MAX_OUTPORT;
-    inline char gc() {
-        #ifdef DEBUG
-            return getchar();
-        #endif
-        if(p1!=p2) return *p1++;
-        p1=buf;
-        p2=p1+fread(buf,1,MAX_INPORT,stdin);
-        return p1==p2?EOF:*p1++;
-    }
-    template<typename T>    // 读入任意类型整数
-    inline void red(T &x) {
-        x=0;bool fg=0;char ch=gc();
-        while(ch<'0'||ch>'9') {if(ch=='-') fg^=1;ch=gc();}
-        while(ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(T)(ch^48),ch=gc();
-        if(fg) x=-x;
-    }
-    void puc(char ch) {      // 输出字符
-        if(O!=end) *O++=ch;
-        else {fwrite(obuf,O-obuf,1,stdout);O=obuf;*O++=ch;}
-    }
-    template<typename T>   
-    void _prt(T x) {
-        if(x>(T)9) _prt(x/(T)10);
-        if(O!=end) *O++=(char)(x%10+(T)'0');
-        else {fwrite(obuf,O-obuf,1,stdout);O=obuf;*O++=(char)(x%(T)10+(T)'0');}
-    }
-    template<typename T>     // 读出任意类型整数
-    void prt(T x) {if(x<0) puc('-'),x=-x;_prt(x);}
-    void close() {fwrite(obuf,O-obuf,1,stdout);} // 输出
+template <typename T>
+inline void red(T &x) {
+    x=0;bool f=0;char ch=getchar();
+    while(ch<'0'||ch>'9') {if(ch=='-') f^=1; ch=getchar();}
+    while(ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(T)(ch^48),ch=getchar();
+    if(f) x=-x;
 }
-using fast_io::red;
-using fast_io::prt;
-using fast_io::puc;
+using namespace std;
 const int N = 1000010;
 struct node{
     int lc,rc,val;
@@ -84,9 +55,8 @@ int main() {
             red(vl);
             modify(root[v],root[i]=newnode(),loc,vl);
         } else {
-            prt(query(root[v],loc));puc('\n');
+            printf("%d\n",query(root[v],loc));
             root[i]=root[v];
         }
     }
-    fast_io::close();
 }
