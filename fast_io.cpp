@@ -13,8 +13,8 @@ namespace IO {
 	}
 	void readstr(char *s,bool fg=0) { // fg=1 for getline
 		char ch=gc();
-		while(ch=='\n'||(!fg&&ch==' ')) ch=gc();
-		while(ch!='\n'&&(fg||ch!=' ')) *s++=ch,ch=gc();
+		while(ch=='\n'||ch=='\r'||(!fg&&ch==' ')) ch=gc();
+		while(ch!='\n'&&ch!='\r'&&(fg||ch!=' ')) *s++=ch,ch=gc();
 		*s='\0';
 	}
 	void writestr(const char *s,char ch='\0') {for(const char *p=s;*p;++p) pc(*p);(ch!='\0')&&(pc(ch),1);}
@@ -26,7 +26,7 @@ namespace IO {
 	}
 	template <typename _Tp> void write(_Tp x,char ch='\0') {
 		(x<0)&&(x=-x,pc('-'),1); 
-		if(x>(_Tp)10) write(x/10);
+		if(x>=(_Tp)10) write(x/10);
 		pc(x%10+'0'); (ch!='\0')&&(pc(ch),1);
 	}
 	void close() {fwrite(Buf,P1-Buf,1,stdout);} 
@@ -34,7 +34,7 @@ namespace IO {
 using IO::read; using IO::write; using IO::readstr; using IO::writestr;
 
 int main() {
-	
+	for(int i=-1000;;++i) write(i,'\n');
 	IO::close();
 	return 0;
 }
