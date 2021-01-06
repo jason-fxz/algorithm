@@ -1,3 +1,7 @@
+/*
+    FFT 快速傅立叶变换
+    加法卷积
+*/
 #include <bits/stdc++.h>
 #define _max(x,y) ((x>y)?x:y)
 #define _min(x,y) ((x<y)?x:y)

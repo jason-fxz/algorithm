@@ -1,3 +1,7 @@
+/*
+	NTT 快速数论变换
+	FFT的取模形式
+*/
 #include <bits/stdc++.h>
 #define MOD(x) ((x<p)?(x):((x)%p))
 template <typename T>
