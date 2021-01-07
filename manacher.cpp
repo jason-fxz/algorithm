@@ -1,3 +1,8 @@
+/*
+    manachar 马拉车算法
+    --> 线性求最长回文串
+    Oi-wiki(Manacher) --> https://oi-wiki.org/string/manacher/
+*/
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 1.2e7;

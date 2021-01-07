@@ -1,10 +1,10 @@
-#include <bits/stdc++.h>
-using namespace std;
 /*
     数组实现的普通Treap
     2020-6-19
     by fxz
 */
+#include <bits/stdc++.h>
+using namespace std;
 struct treap {
     private: 
     // N 为节点数

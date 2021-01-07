@@ -1,6 +1,6 @@
 /*
 	半平面交
-	本代码 >>> 求凸多边形面积并
+	本代码 --> 求凸多边形面积并
 */
 #include <bits/stdc++.h>
 #define il inline

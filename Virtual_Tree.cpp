@@ -1,4 +1,8 @@
-// luogu - P2495 [SDOI2011]消耗战
+/*
+	luogu - P2495 [SDOI2011]消耗战
+	虚树板子，建树看 build()
+	Oi-wiki(虚树) --> https://oi-wiki.org/graph/virtual-tree/
+*/
 #include <bits/stdc++.h>
 using namespace std;
 template <typename T>
@@ -85,7 +89,7 @@ void build() {
 	}
 	for(int i=2;i<=top;++i) fa[st[i]]=st[i-1],++deg[st[i-1]];
 }
-// end
+// end build
 ll solve() {
 	queue<int> q;
 	for(int i=1;i<=tot;++i) {

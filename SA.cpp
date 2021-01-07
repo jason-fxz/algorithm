@@ -1,3 +1,8 @@
+/*
+    后缀数组 (SA)
+    O(nlogn) 倍增做法，外加求 height 数组
+    Oi-wiki(后缀数组 ) --> https://oi-wiki.org/string/sa/
+*/
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 1000010;
