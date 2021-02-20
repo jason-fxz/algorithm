@@ -35,12 +35,12 @@ void solve() {
     for(int x=1;x<=n;++x) {
         // updata(a[x])
         for(mt=mdr[x].begin();mt!=mdr[x].end();++mt) 
-            for(int i=mt->l;i<=mt->r;++i) ans[mt->id]+=mt->fg*(/*query(a[i])*/);
+            for(int i=mt->l;i<=mt->r;++i) ans[mt->id]+=mt->fg*(1/*query(a[i])*/);
     }
     for(int x=n;x>=1;--x) {
         // updata(a[x])
         for(mt=mdl[x].begin();mt!=mdl[x].end();++mt)
-            for(int i=mt->l;i<=mt->r;++i) ans[mt->id]+=mt->fg*(/*query(a[i])*/);
+            for(int i=mt->l;i<=mt->r;++i) ans[mt->id]+=mt->fg*(1/*query(a[i])*/);
     }
 
 }
