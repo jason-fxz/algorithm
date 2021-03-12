@@ -1,5 +1,8 @@
-#include <cstdio>
 #include <iostream>
+#include <cstdio>
+
+#ifndef FASTIO
+#define FASTIO
 
 class myin{
 private:
@@ -77,12 +80,4 @@ public:
 
 inline myout &edl(myout &out) {out<<"\n";out.flush();return out;}
 
-char s1[100],s2[100];
-
-int main() {
-	double x;
-	fin >> x; 
-	fout.setpoint(2);
-	fout << x << edl;
-	return 0;
-}
+#endif
