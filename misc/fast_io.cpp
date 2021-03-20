@@ -4,10 +4,16 @@ namespace IO {
 	const int MAX = 1<<20;
 	char buf[MAX],Buf[MAX],*p1=buf,*p2=buf,*P1=Buf,*P2=Buf+MAX;
 	inline char gc() {
+        #ifdef DEBUG
+        return getchar();
+        #endif 
 		if(p1!=p2) return *p1++;
 		p1=buf;p2=p1+fread(buf,1,MAX,stdin); return (p1==p2)?(EOF):(*p1++);
 	}
 	inline void pc(const char c) {
+        #ifdef DEBUG
+        return putchar(c),void();
+        #endif 
 		if(P1!=P2) *P1++=c; 
 		else {fwrite(Buf,P1-Buf,1,stdout); P1=Buf; *P1++=c;}
 	}
@@ -24,17 +30,25 @@ namespace IO {
 		while(ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(_Tp)(ch^48),ch=gc();
 		f&&(x=-x);
 	}
-	template <typename _Tp> void write(_Tp x,char ch='\0') {
-		(x<0)&&(x=-x,pc('-'),1); 
-		if(x>=(_Tp)10) write(x/10);
-		pc(x%10+'0'); (ch!='\0')&&(pc(ch),1);
-	}
-	void close() {fwrite(Buf,P1-Buf,1,stdout);} 
+    template<typename Tp,typename... Args>void read(Tp &t,Args &... args){read(t);read(args...);}
+    template<typename Tp> void write(Tp x,char ch='\0'){
+        static int buf[100],d;
+        if (x==0)  pc('0');
+        else {
+            if (x<0)  pc('-'),x=-x;
+            for (d=0;x;x/=10)  buf[++d]=x%10+48;
+            while (d) pc((char)buf[d--]);
+        }
+        if(ch!='\0') pc(ch);
+    }
+	void flush() {fwrite(Buf,P1-Buf,1,stdout);} 
+    struct _flusher{
+        ~_flusher(){ flush(); }
+    }flusher;
 }
 using IO::read; using IO::write; using IO::readstr; using IO::writestr;
 
 int main() {
 	for(int i=-1000;;++i) write(i,'\n');
-	IO::close();
 	return 0;
 }

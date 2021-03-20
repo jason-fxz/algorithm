@@ -7,7 +7,7 @@
 #define seeln(a) cerr<<#a<<" = "<<a<<endl
 #define put(a) cerr<<a
 #define outarr(_a,_l,_r) for(int _i=(_l);_i<=(_r);_i++) cerr<<#_a"["<<_i<<"]="<<_a[_i]<<" ";cerr<<endl;
-#define Outarr(_a,_l,_r) cerr<<#_a<<" ["<<_l<<", "<<_r<<"] : "; for(int i=(_l);i<=(_r);++i) cerr<<_a[i]<<" ";cout<<endl;
+#define Outarr(_a,_l,_r) cerr<<#_a<<" ["<<_l<<", "<<_r<<"] : "; for(int i=(_l);i<=(_r);++i) cerr<<_a[i]<<" ";cerr<<endl;
 #define out(a) cerr<<a<<" "
 #define outln(a) cerr<<a<<endl
 
