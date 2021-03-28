@@ -3,13 +3,23 @@
 #ifndef DEBUGER
 #define DEBUGER
 
-#define see(a) cerr<<#a<<" = "<<a<<" "
-#define seeln(a) cerr<<#a<<" = "<<a<<endl
-#define put(a) cerr<<a
-#define outarr(_a,_l,_r) for(int _i=(_l);_i<=(_r);_i++) cerr<<#_a"["<<_i<<"]="<<_a[_i]<<" ";cerr<<endl;
-#define Outarr(_a,_l,_r) cerr<<#_a<<" ["<<_l<<", "<<_r<<"] : "; for(int i=(_l);i<=(_r);++i) cerr<<_a[i]<<" ";cerr<<endl;
-#define out(a) cerr<<a<<" "
-#define outln(a) cerr<<a<<endl
+#ifdef DEBUG
+    #define see(a) cerr<<#a<<" = "<<a<<" "
+    #define seeln(a) cerr<<#a<<" = "<<a<<endl
+    #define put(a) cerr<<a
+    #define outarr(_a,_l,_r) for(int _i=(_l);_i<=(_r);_i++) cerr<<#_a"["<<_i<<"]="<<_a[_i]<<" ";cerr<<endl;
+    #define Outarr(_a,_l,_r) cerr<<#_a<<" ["<<_l<<", "<<_r<<"] : "; for(int i=(_l);i<=(_r);++i) cerr<<_a[i]<<" ";cerr<<endl;
+    #define out(a) cerr<<a<<" "
+    #define outln(a) cerr<<a<<endl
+#else
+    #define see(a) ;
+    #define seeln(a) ;
+    #define put(a);
+    #define outarr(_a,_l,_r) ;
+    #define Outarr(_a,_l,_r) ;
+    #define out(a) ;
+    #define outln(a) ;
+#endif
 
 using namespace std;
 
@@ -27,6 +37,12 @@ istream &operator>>(istream &in, vector<Tp> &vt) {
 template<typename Tp>
 ostream &operator<<(ostream &out, set<Tp> st) {
     out << "set of size = "<< st.size() << " : { " ;
+    for(auto it=st.begin();it!=st.end();++it) out << *it << ", ";
+    return out << "} ";
+}
+template<typename Tp>
+ostream &operator<<(ostream &out, multiset<Tp> st) {
+    out << "multiset of size = "<< st.size() << " : { " ;
     for(auto it=st.begin();it!=st.end();++it) out << *it << ", ";
     return out << "} ";
 }
