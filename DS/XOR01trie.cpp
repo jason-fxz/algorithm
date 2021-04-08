@@ -4,46 +4,50 @@
 */
 #include <bits/stdc++.h>
 
+
 namespace trie {
-    #define ls(p) t[p].ch[0]
-    #define rs(p) t[p].ch[1]
-    const int N = 1000010;
-    const int M = 20;
-    struct node {
-        int ch[2],w,xorw;
-    }t[N*M];
-    int root[N],tot;
+    #define ls(x) ch[x][0]
+    #define rs(x) ch[x][1]
+    const int N = 600010;
+    const int DEP = 22;
+    int ch[N*DEP][2],w[N*DEP],xorw[N*DEP],sz;
+    int newnode() {++sz;ch[sz][0]=ch[sz][1]=0;w[sz]=xorw[sz]=0;return sz;}
     void pushup(int p) {
-        t[p].w=t[p].xorw=0;
+        w[p]=xorw[p]=0;
         if(ls(p)) {
-            t[p].w+=t[ls(p)].w;
-            t[p].xorw^=t[ls(p)].xorw<<1;
+            w[p]+=w[ls(p)];     
+            xorw[p]^=xorw[ls(p)]<<1;   
         }
         if(rs(p)) {
-            t[p].w+=t[rs(p)].w;
-            t[p].xorw^=(t[rs(p)].xorw<<1)|(t[rs(p)].w&1);
+            w[p]+=w[rs(p)];
+            xorw[p]^=(xorw[rs(p)]<<1)|(w[rs(p)]&1);
         }
-    }
-    int newnode() {
-        ++tot;t[tot]={0,0,0,0};return tot;
     }
     void insert(int &p,int x,int d=0) {
         if(!p) p=newnode();
-        if(d>=M) return ++t[p].w,void();
-        insert(t[p].ch[x&1],x>>1,d+1);
+        if(d>=DEP) return ++w[p],void();
+        insert(ch[p][x&1],x>>1,d+1);
         pushup(p);
     }
-    void remove(int p,int x,int d=0) {
-        if(d>=M) return --t[p].w,void();
-        remove(t[p].ch[x&1],x>>1,d+1);
+    void erase(int p,int x,int d=0) {
+        if(d>=DEP) return --w[p],void();
+        erase(ch[p][x&1],x>>1,d+1);
         pushup(p);
+    }
+    // merge q to p
+    int merge(int p,int q) {
+        if(!p||!q) return p+q;
+        w[p]+=w[q]; xorw[p]^=xorw[q];
+        ls(p)=merge(ls(p),ls(q));
+        rs(p)=merge(rs(p),rs(q));
+        return p;
     }
     void addall(int p) {
-        std::swap(ls(p),rs(p));
+        swap(ls(p),rs(p));
         if(ls(p)) addall(ls(p));
         pushup(p);
     }
-    int xorsum(int p) {return t[p].xorw;}
+    int xorsum(int p) {return xorw[p];}
 }
 
 int main() {
