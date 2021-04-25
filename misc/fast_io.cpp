@@ -41,7 +41,7 @@ namespace IO {
         }
         if(ch!='\0') pc(ch);
     }
-	void flush() {fwrite(Buf,P1-Buf,1,stdout);} 
+	void flush() {fwrite(Buf,P1-Buf,1,stdout);P1=Buf;} 
     struct _flusher{
         ~_flusher(){ flush(); }
     }flusher;
