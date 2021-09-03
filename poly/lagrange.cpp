@@ -9,7 +9,7 @@ int n, k;
 
 ll fpow(ll a, ll b, ll p = mod) {
     ll r = 1;
-    for ( ; b; b >>= 1, a = (a * a) % p) if (b & 1) r = (r * a) % p;
+    for (; b; b >>= 1, a = (a * a) % p) if (b & 1) r = (r * a) % p;
     return r;
 }
 ll s[N], p[N], fac[N], inv[N], ifac[N];
@@ -26,9 +26,9 @@ ll lagrange(int n, ll k, ll x[], ll y[]) { // O(n^2)
     for (int j = 0; j < n; ++j) {
         ll P1 = 1, P2 = 1;
         for (int i = 0; i < n; ++i) if (i != j) {
-            P1 = (P1 * (k - x[i] + mod)) % mod;
-            P2 = (P2 * (x[j] - x[i] + mod)) % mod;
-        }
+                P1 = (P1 * (k - x[i] + mod)) % mod;
+                P2 = (P2 * (x[j] - x[i] + mod)) % mod;
+            }
         r = (r + y[j] * P1 % mod * fpow(P2, mod - 2, mod) % mod) % mod;
     }
     return r;

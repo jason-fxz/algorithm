@@ -3,12 +3,12 @@
 template <typename Tp>
 inline void read(Tp &x) {
     x = 0; bool fg = 0; char ch = getchar();
-    while(ch < '0' || ch > '9') {
-        if(ch == '-') fg ^= 1;
+    while (ch < '0' || ch > '9') {
+        if (ch == '-') fg ^= 1;
         ch = getchar();
     }
-    while(ch >= '0' && ch <= '9') x = (x << 1) + (x << 3) + (Tp)(ch ^ 48), ch = getchar();
-    if(fg) x = -x;
+    while (ch >= '0' && ch <= '9') x = (x << 1) + (x << 3) + (Tp)(ch ^ 48), ch = getchar();
+    if (fg) x = -x;
 }
 using namespace std;
 typedef long long ll;
@@ -47,12 +47,12 @@ void solve() {
         for (mt = mdl[x].begin(); mt != mdl[x].end(); ++mt)
             for (int i = mt->l; i <= mt->r; ++i) ans[mt->id] += mt->fg * (1/*query(a[i])*/);
     }
-
 }
 int main() {
     read(n); read(m); read(K);
     for (int i = 1; i <= n; ++i) read(a[i]);
-    B = sqrt(n); for (int i = 1; i <= n; ++i) bl[i] = (i - 1) / B + 1;
+    B = sqrt(n);
+    for (int i = 1; i <= n; ++i) bl[i] = (i - 1) / B + 1;
     for (int i = 1; i <= m; ++i) read(L[i]), read(R[i]), t[i] = i;
     sort(t + 1, t + m + 1, cmp);
     init();
@@ -78,8 +78,7 @@ int main() {
     }
     solve();
     for (int i = 1; i <= m; ++i) ans[t[i]] += ans[t[i - 1]];
-    for (int i = 1; i <= m; ++i) {
+    for (int i = 1; i <= m; ++i)
         printf("%lld\n", ans[i]);
-    }
     return 0;
 }

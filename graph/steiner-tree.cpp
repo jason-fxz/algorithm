@@ -2,14 +2,14 @@
 // https://www.luogu.com.cn/problem/P6192
 #include <bits/stdc++.h>
 template <typename Tp>
-inline void read(Tp& x) {
+inline void read(Tp &x) {
     x = 0; bool fg = 0; char ch = getchar();
     while (ch < '0' || ch > '9') { if (ch == '-') fg ^= 1; ch = getchar();}
     while (ch >= '0' && ch <= '9') x = (x << 1) + (x << 3) + (Tp)(ch ^ 48), ch = getchar();
     if (fg) x = -x;
 }
 template <typename Tp, typename... Args>
-void read(Tp& t, Args& ...args) { read(t); read(args...); }
+void read(Tp &t, Args &...args) { read(t); read(args...); }
 using namespace std;
 typedef long long ll;
 const int N = 105;
@@ -21,7 +21,7 @@ int dp[1 << 10][N];
 void adde(int u, int v, int w) {
     E++; pnt[E] = v; wth[E] = w; nxt[E] = head[u]; head[u] = E;
 }
-struct dat{
+struct dat {
     int u, d;
     bool operator<(const dat a) const {
         return d > a.d;
@@ -57,14 +57,12 @@ int main() {
     }
     ful = (1 << k) - 1;
     memset(dp, 0x3f, sizeof(dp));
-    for (int i = 1; i <= n; ++i) if (id[i] != -1) {
-        dp[1 << id[i]][i] = 0;
-    }
+    for (int i = 1; i <= n; ++i) if (id[i] != -1)
+            dp[1 << id[i]][i] = 0;
     for (int S = 1; S <= ful; ++S) {
         for (int i = 1; i <= n; ++i) {
-            for (int sub = (S - 1) & S; sub; sub = (sub - 1) & S) {
+            for (int sub = (S - 1) & S; sub; sub = (sub - 1) & S)
                 dp[S][i] = min(dp[S][i], dp[sub][i] + dp[S ^ sub][i]);
-            }
             if (dp[S][i] < inf) {
                 Q.push(dat{i, dp[S][i]});
             }
@@ -72,9 +70,8 @@ int main() {
         dijk(S);
     }
     int ans = inf;
-    for (int i = 1; i <= n; ++i) {
+    for (int i = 1; i <= n; ++i)
         ans = min(ans, dp[ful][i]);
-    }
     printf("%d\n", ans);
     return 0;
 }

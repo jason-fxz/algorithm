@@ -13,7 +13,7 @@ template <typename Tp> void read(Tp &x) {
     if (f) x = -x;
 }
 template <typename Tp, typename... Args>
-void read(Tp &t, Args &... args){ read(t); read(args...); }
+void read(Tp &t, Args &... args) { read(t); read(args...); }
 
 const int N = 50010;
 const int INF = 2147483647;
@@ -23,7 +23,7 @@ const int MIN = -1e8;
 int n, m, a[N];
 struct node {
     int l, r, sum;
-}t[N * 450];
+} t[N * 450];
 int rt[N << 2], tot;
 
 int newnode() {
@@ -55,7 +55,7 @@ void Build(int l = 1, int r = n, int x = 1) {
 
 // 返回 [L, R] 中 <= k 的个数
 int Rank(int L, int R, int k, int l = 1, int r = n, int x = 1) {
-    if(L <= l && r <= R) return query(rt[x], 0, k);
+    if (L <= l && r <= R) return query(rt[x], 0, k);
     int ret = 0;
     if (L <= mid) ret = Rank(L, R, k, l, mid, lc);
     if (R > mid) ret += Rank(L, R, k, mid + 1, r, rc);
@@ -106,10 +106,9 @@ int main() {
     for (int cs = 1; cs <= m; ++cs) {
         int op, x, y, z, k;
         read(op, x, y);
-        switch (op)
-        {
+        switch (op) {
         case 1:
-            read(z);   
+            read(z);
             printf("%d\n", Rank(x, y, z - 1) + 1);
             break;
         case 2:
@@ -139,7 +138,7 @@ int main() {
 找每个区间比 k 小的个数
 2. [l, r] 排名为 k
 所有区间捞出来，线段树二分？
-3. 单点修改下标 pos 的数改为 k 
+3. 单点修改下标 pos 的数改为 k
 改就是了
 4. [l, r] x 的前驱
 Kth(Rank(z - 1))
