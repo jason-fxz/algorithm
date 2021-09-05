@@ -1,7 +1,7 @@
 
 # lagrange.cpp | POLY | OI Algorithm
 
-[**Go Back**](././)
+[**Go Back**](./)
 
 ---
 
@@ -60,4 +60,4 @@ ll lagrange_y(int n, ll k, ll y[]) { // 当 x_i = i (i in [0, n]) O(n)
 
 ---
 
-[**Go Back**](././)
+[**Go Back**](./)

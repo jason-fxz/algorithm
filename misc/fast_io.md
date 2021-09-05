@@ -1,7 +1,7 @@
 
 # fast_io.cpp | MISC | OI Algorithm
 
-[**Go Back**](././)
+[**Go Back**](./)
 
 ---
 
@@ -65,4 +65,4 @@ int main() {
 
 ---
 
-[**Go Back**](././)
+[**Go Back**](./)

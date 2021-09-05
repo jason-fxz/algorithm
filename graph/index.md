@@ -5,7 +5,7 @@
 
 ## 目录
 
-- [**Go Back**](././)
+- [**Go Back**](./../)
 - [MFMC(Dijkstra).cpp](MFMC(Dijkstra).md)
 - [MFMC(EK).cpp](MFMC(EK).md)
 - [GomoryHu-Tree.cpp](GomoryHu-Tree.md)

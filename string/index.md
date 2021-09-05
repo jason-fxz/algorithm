@@ -5,7 +5,7 @@
 
 ## 目录
 
-- [**Go Back**](././)
+- [**Go Back**](./../)
 - [PAM.cpp](PAM.md)
 - [SA.cpp](SA.md)
 - [SAM.cpp](SAM.md)

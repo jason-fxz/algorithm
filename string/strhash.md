@@ -1,7 +1,7 @@
 
 # strhash.cpp | STRING | OI Algorithm
 
-[**Go Back**](././)
+[**Go Back**](./)
 
 ---
 
@@ -53,4 +53,4 @@ pll gethash(pll *f, int l, int r) {
 
 ---
 
-[**Go Back**](././)
+[**Go Back**](./)

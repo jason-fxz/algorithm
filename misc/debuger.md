@@ -1,7 +1,7 @@
 
 # debuger.h | MISC | OI Algorithm
 
-[**Go Back**](././)
+[**Go Back**](./)
 
 ---
 
@@ -72,4 +72,4 @@ ostream &operator<<(ostream &out, pair<Tp1, Tp2> P) {
 
 ---
 
-[**Go Back**](././)
+[**Go Back**](./)

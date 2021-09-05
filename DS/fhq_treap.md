@@ -1,7 +1,7 @@
 
 # fhq_treap.cpp | DS | OI Algorithm
 
-[**Go Back**](././)
+[**Go Back**](./)
 
 ---
 
@@ -110,4 +110,4 @@ struct fhq_Treap {
 
 ---
 
-[**Go Back**](././)
+[**Go Back**](./)

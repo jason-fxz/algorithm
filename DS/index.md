@@ -5,7 +5,7 @@
 
 ## 目录
 
-- [**Go Back**](././)
+- [**Go Back**](./../)
 - [Treap.cpp](Treap.md)
 - [KDTree2.cpp](KDTree2.md)
 - [seg-in-seg.cpp](seg-in-seg.md)

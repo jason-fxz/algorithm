@@ -1,7 +1,7 @@
 
 # fastIO.h | MISC | OI Algorithm
 
-[**Go Back**](././)
+[**Go Back**](./)
 
 ---
 
@@ -94,4 +94,4 @@ inline myout &edl(myout &out) {out << "\n"; out.flush(); return out;}
 
 ---
 
-[**Go Back**](././)
+[**Go Back**](./)

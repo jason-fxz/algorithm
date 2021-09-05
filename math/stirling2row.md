@@ -1,7 +1,7 @@
 
 # stirling2row.cpp | MATH | OI Algorithm
 
-[**Go Back**](././)
+[**Go Back**](./)
 
 ---
 
@@ -89,4 +89,4 @@ int main() {
 
 ---
 
-[**Go Back**](././)
+[**Go Back**](./)

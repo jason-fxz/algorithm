@@ -5,5 +5,5 @@
 
 ## 目录
 
-- [**Go Back**](././)
+- [**Go Back**](./../)
 - [twiceoffline.cpp](twiceoffline.md)

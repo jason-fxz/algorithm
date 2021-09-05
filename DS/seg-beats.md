@@ -1,7 +1,7 @@
 
 # seg-beats.cpp | DS | OI Algorithm
 
-[**Go Back**](././)
+[**Go Back**](./)
 
 ---
 
@@ -219,4 +219,4 @@ signed main() {
 
 ---
 
-[**Go Back**](././)
+[**Go Back**](./)
