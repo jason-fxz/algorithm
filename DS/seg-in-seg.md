@@ -1,7 +1,7 @@
 
 # seg-in-seg.cpp | DS | OI Algorithm
 
-[**Go Back**](./../)
+[**Go Back**](././)
 
 ---
 
@@ -158,4 +158,4 @@ Kyh(Rank(z) + 1)
 
 ---
 
-[**Go Back**](./../)
+[**Go Back**](././)

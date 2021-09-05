@@ -1,7 +1,7 @@
 
 # li-chao-tree.cpp | DS | OI Algorithm
 
-[**Go Back**](./../)
+[**Go Back**](././)
 
 ---
 
@@ -91,4 +91,4 @@ int main() {
 
 ---
 
-[**Go Back**](./../)
+[**Go Back**](././)

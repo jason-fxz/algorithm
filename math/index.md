@@ -5,7 +5,7 @@
 
 ## 目录
 
-- [**Go Back**](./../)
+- [**Go Back**](././)
 - [CRT.cpp](CRT.md)
 - [primitive_root.cpp](primitive_root.md)
 - [EXBSGS.cpp](EXBSGS.md)

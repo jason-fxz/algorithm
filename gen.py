@@ -13,6 +13,10 @@ jasonfan 的算法模板。
 
 **[GitHub 仓库](https://github.com/jason-fxz/algorithm)**
 
+## Copyleft
+
+See [CC0 LICENSE](LICENSE)
+
 ---
 
 ## 目录
@@ -26,13 +30,13 @@ index_dirs = """
 
 ## 目录
 
-- [**Go Back**](./../)
+- [**Go Back**](././)
 """
 
 index_files = """
 # {0} | {1} | OI Algorithm
 
-[**Go Back**](./../)
+[**Go Back**](././)
 
 ---
 
@@ -42,7 +46,7 @@ index_files = """
 
 ---
 
-[**Go Back**](./../)
+[**Go Back**](././)
 """
 
 def Writetext(filepath, text):

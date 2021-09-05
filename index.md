@@ -7,7 +7,7 @@ jasonfan 的算法模板。
 
 ## Copyleft
 
-[CC0 LICENSE](LICENSE)
+See [CC0 LICENSE](LICENSE)
 
 ---
 

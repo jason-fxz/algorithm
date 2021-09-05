@@ -1,7 +1,7 @@
 
 # chk.cpp | MISC | OI Algorithm
 
-[**Go Back**](./../)
+[**Go Back**](././)
 
 ---
 
@@ -79,4 +79,4 @@ int main(int argc, char const *argv[]) {
 
 ---
 
-[**Go Back**](./../)
+[**Go Back**](././)

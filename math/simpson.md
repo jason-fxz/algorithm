@@ -1,7 +1,7 @@
 
 # simpson.cpp | MATH | OI Algorithm
 
-[**Go Back**](./../)
+[**Go Back**](././)
 
 ---
 
@@ -39,4 +39,4 @@ db calc(db l, db r, db eps) {
 
 ---
 
-[**Go Back**](./../)
+[**Go Back**](././)

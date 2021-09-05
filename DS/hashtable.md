@@ -1,7 +1,7 @@
 
 # hashtable.cpp | DS | OI Algorithm
 
-[**Go Back**](./../)
+[**Go Back**](././)
 
 ---
 
@@ -70,4 +70,4 @@ namespace hashtable2 {
 
 ---
 
-[**Go Back**](./../)
+[**Go Back**](././)

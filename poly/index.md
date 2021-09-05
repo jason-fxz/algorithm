@@ -5,7 +5,7 @@
 
 ## 目录
 
-- [**Go Back**](./../)
+- [**Go Back**](././)
 - [lagrange.cpp](lagrange.md)
 - [poly.cpp](poly.md)
 - [FFT.cpp](FFT.md)

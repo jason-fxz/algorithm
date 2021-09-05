@@ -1,7 +1,7 @@
 
 # Dinic.cpp | GRAPH | OI Algorithm
 
-[**Go Back**](./../)
+[**Go Back**](././)
 
 ---
 
@@ -79,4 +79,4 @@ int main() {
 
 ---
 
-[**Go Back**](./../)
+[**Go Back**](././)
