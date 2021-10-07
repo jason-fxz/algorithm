@@ -21,6 +21,8 @@ jobs:
         run: |
           chmod +x ./gen.py
           ./gen.py
+          cp _config.yml ./public/
+          cp LICENSE ./public/
         
       - name: Deploy to GitHub Pages
         if: success()
