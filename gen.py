@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 
 """
-generate '.md' files by '.cpp / .h'
+generate '.md' files by '.cpp / .h' to public/
 """
 
 import os
+import shutil
 
 include_exts = [".cpp", ".h", ".hpp", ".c", ".py"]
 
@@ -55,13 +56,14 @@ index_files = """
 def LogINFO(info):
     print("\033[1m\033[32mINFO \033[0m", info)
 
+def topublic(path):
+    return './public' + path[1:]
 
 def Writetext(filepath, text):
     f = open(filepath, "w")
     f.write(text)
     f.close()
     LogINFO("generated: \033[35m" + filepath + "\033[0m")
-
 
 def Readtext(filepath):
     f = open(filepath, "r")
@@ -88,9 +90,14 @@ def PrintStatistics():
 
 if __name__ == "__main__":
     LogINFO("Start processing")
+    shutil.rmtree('public', ignore_errors=True)
+    os.mkdir('public')
     for root, dirs, files in os.walk("./"):
-        if root.find("/.") != -1 or root == "./":
+        if root.find("/.") != -1 or root == "./" or root.find('public') != -1:
             continue
+
+        os.mkdir(topublic(root))
+
         category = root[2:]
         count_files[category] = 0
         index_root += "- [{0}]({1})\n".format(category.upper(), root + "/")
@@ -105,12 +112,12 @@ if __name__ == "__main__":
                     file_name + file_ext, file_name + ".md"
                 )
                 Writetext(
-                    os.path.join(root, file_name + ".md"),
+                    topublic(os.path.join(root, file_name + ".md")),
                     index_files.format(
                         file_name + file_ext, category.upper(), Readtext(file_path)
                     ),
                 )
-        Writetext(os.path.join(root, "index.md"), index_dir)
+        Writetext(topublic(os.path.join(root, "index.md")), index_dir)
 
-    Writetext("./index.md", index_root)
+    Writetext(topublic("./index.md"), index_root)
     PrintStatistics()
