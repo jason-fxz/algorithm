@@ -1,4 +1,8 @@
-// 左偏树 (可并堆)
+/* 左偏树 (可并堆)
++ 左偏树是一棵二叉树，有堆的性质
++ 每个节点左儿子dist >= 右儿子dist
++ 每个节点的 dist 都等于其右儿子的 dist 加一
+*/
 #include <bits/stdc++.h>
 #define ls(x) t[x].ch[0]
 #define rs(x) t[x].ch[1]
