@@ -21,7 +21,7 @@ struct twosat {
             top--;
         }
     }
-    bool slove() {
+    bool solve() {
         for (int i = 1; i <= 2 * n; i++) if (!dfn[i]) tarjan(i);
         for (int i = 1; i <= n; i++) {
             if (col[i] == col[i + n]) return 0;
@@ -46,7 +46,7 @@ int main() {
         scanf("%d%d%d%d", &u, &a, &v, &b);
         S.insert(u, a, v, b);
     }
-    bool fg = S.slove();
+    bool fg = S.solve();
     if (!fg) printf("IMPOSSIBLE\n");
     else {
         printf("POSSIBLE\n");
